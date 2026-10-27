@@ -62,6 +62,30 @@ def _one_hot_categorical(series: pd.Series, prefix: str) -> pd.DataFrame:
     return pd.get_dummies(series.astype("category"), prefix=prefix, dummy_na=True)
 
 
+def strip_strings(df: pd.DataFrame) -> pd.DataFrame:
+    """Remove espaços/tabs no início e fim de todas as células de texto."""
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].str.strip()
+    return df
+
+
+def normalize_labels(df: pd.DataFrame) -> pd.DataFrame:
+    """Remove espaços nas pontas e unifica variações de rótulo categórico.
+
+    Sem isso, " alta", "alto" e "alta" viram dummies distintas no one-hot.
+    """
+    df = strip_strings(df)
+    if "sexo" in df:
+        df["sexo"] = df["sexo"].str.lower()
+    if "usa_oculos" in df:
+        df["usa_oculos"] = df["usa_oculos"].str.lower()
+    if "familiaridade_com_jogos" in df:
+        df["familiaridade_com_jogos"] = (
+            df["familiaridade_com_jogos"].str.lower().replace({"alto": "alta"})
+        )
+    return df
+
+
 def _parse_age(val) -> float:
     if pd.isna(val):
         return np.nan
@@ -92,7 +116,7 @@ def load_modeling_dataset(
     drop_neutral: bool = False,
     zscore_by_subject: bool = False,
 ) -> ModelingDataset:
-    df = pd.read_csv(resolve_summary_path(summary_name))
+    df = normalize_labels(pd.read_csv(resolve_summary_path(summary_name)))
 
     pueq_cols = [c for c in df.columns if c.startswith("PUEQ")]
     if "UEQ_Overall" not in df.columns and pueq_cols:

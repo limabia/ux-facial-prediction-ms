@@ -13,33 +13,14 @@ from pathlib import Path
 
 import pandas as pd
 
+from modeling.utils import normalize_labels, strip_strings
+
 DATA_RAW = Path(__file__).resolve().parent / "data" / "raw"
 
 
 def pad_id(series: pd.Series) -> pd.Series:
     """Converte ids inteiros (1, 2, ...) em strings de 2 dígitos (01, 02)."""
     return series.astype(int).astype(str).str.zfill(2)
-
-
-def strip_strings(df: pd.DataFrame) -> pd.DataFrame:
-    """Remove espaços/tabs no início e fim de todas as células de texto."""
-    for col in df.select_dtypes(include="object").columns:
-        df[col] = df[col].str.strip()
-    return df
-
-
-def normalize_labels(df: pd.DataFrame) -> pd.DataFrame:
-    """Remove espaços nas pontas e unifica variações de rótulo categórico."""
-    df = strip_strings(df)
-    if "sexo" in df:
-        df["sexo"] = df["sexo"].str.lower()
-    if "usa_oculos" in df:
-        df["usa_oculos"] = df["usa_oculos"].str.lower()
-    if "familiaridade_com_jogos" in df:
-        df["familiaridade_com_jogos"] = (
-            df["familiaridade_com_jogos"].str.lower().replace({"alto": "alta"})
-        )
-    return df
 
 
 def anonymize_controle(path: Path) -> None:

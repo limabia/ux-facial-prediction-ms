@@ -19,6 +19,7 @@ from typing import Any
 import pandas as pd
 
 from modeling import config
+from modeling.utils import normalize_labels
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -111,7 +112,7 @@ def load_control_dataset(control_path: Path) -> pd.DataFrame | None:
         print(f"[WARN] Coluna 'id' ausente em '{control_path.name}'. Dados de controle não serão anexados.")
         return None
 
-    control_df = control_df.copy()
+    control_df = normalize_labels(control_df.copy())
     if 'nome' in control_df.columns:
         control_df.drop(columns=['nome'], inplace=True)
 

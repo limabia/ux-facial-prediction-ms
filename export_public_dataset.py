@@ -31,7 +31,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from anonymize_data import normalize_labels
+from modeling.utils import normalize_labels
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_RAW = REPO_ROOT / "data" / "raw"
