@@ -1,0 +1,31 @@
+id,data_realizacao,sexo,idade,formacao_academica,familiaridade_com_jogos,usa_oculos
+01,02/2024,masculino,34 anos,Graduação,alta,nao
+02,03/2025,feminino,26 anos,Graduação,média,nao
+03,03/2025,masculino,26 anos,Graduação,alta,nao
+04,03/2025,feminino,26 anos,Graduação,média,sim
+05,03/2025,masculino,28 anos,Graduação,alta,sim
+06,03/2025,masculino,27 anos,Graduação,média,sim
+07,03/2025,masculino,29 anos,Graduação,média,sim
+08,04/2025,masculino,27 anos,Graduação,alta,nao
+09,04/2025,masculino,26 anos,Ensino médio,alta,nao
+10,04/2025,masculino,28 anos,Graduação,alta,nao
+11,04/2025,feminino,27 anos,Pós-graduação,média,sim
+12,04/2025,feminino,27 anos,Graduação,baixa,sim
+13,05/2025,feminino,27 anos,Graduação,alta,nao
+14,06/2025,masculino,27 anos,Graduação,alta,nao
+15,06/2025,feminino,26 anos,Graduação,baixa,sim
+16,07/2025,feminino,28 anos,Graduação,média,nao
+17,07/2025,feminino,28 anos,Graduação,média,sim
+18,08/2025,feminino,20 anos,Ensino médio,alta,nao
+19,08/2025,feminino,27 anos,Ensino médio,baixa,nao
+20,12/2025,feminino,32 anos,Graduação,média,nao
+21,12/2025,masculino,32 anos,Graduação,alta,sim
+22,12/2025,feminino,32 anos,Graduação,alta,nao
+23,12/2025,masculino,31 anos,Ensino técnico,alta,nao
+24,12/2025,feminino,31 anos,Graduação,média,nao
+25,12/2025,masculino,28 anos,Graduação,alta,sim
+26,12/2025,masculino,26 anos,Graduação,alta,sim
+27,12/2025,masculino,26 anos,Graduação,média,nao
+28,12/2025,feminino,19 anos,Ensino médio,alta,sim
+29,12/2025,feminino,27 anos,Graduação,média,sim
+30,12/2025,masculino,27 anos,Graduação,alta,sim
