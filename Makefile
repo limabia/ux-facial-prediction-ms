@@ -4,7 +4,8 @@ PIP := $(VENV)/bin/pip
 WEIGHTS_DIR ?= face_expression_recognition/weights
 
 .PHONY: setup pipeline frames infer summaries analysis modeling-refresh clean clean-outputs npm-install validate lint \
-	mediapipe-extract mediapipe-events mediapipe-dataset mediapipe-grid-search hypothesis-tests sanity-checks
+	mediapipe-extract mediapipe-events mediapipe-dataset mediapipe-grid-search hypothesis-tests sanity-checks ueq-friedman \
+	anonymize public-dataset
 
 setup:
 	@test -d $(VENV) || python -m venv $(VENV)
@@ -84,3 +85,17 @@ hypothesis-tests:  ## Executa todos os testes de hipótese (H2, H3, H4)
 sanity-checks:  ## Executa sanity checks (classificação de jogo)
 	@. $(VENV)/bin/activate && python exploration/sanity_check_predict_game.py
 	@. $(VENV)/bin/activate && python exploration/faceapi_sanity_check.py
+
+# === Testes estatisticos dos questionarios ===
+
+ueq-friedman:  ## Friedman UEQ-S entre jogos + post-hoc (requer apenas data/raw/ueq)
+	@mkdir -p exploration/outputs
+	@. $(VENV)/bin/activate && python exploration/ueq_friedman_games.py
+
+# === Dataset publico ===
+
+anonymize:  ## Gera copias -anonimizado dos questionarios/controle em data/raw
+	@. $(VENV)/bin/activate && python anonymize_data.py
+
+public-dataset: anonymize  ## Exporta o dataset anonimizado para dataset/ (com verificacao de PII)
+	@. $(VENV)/bin/activate && python export_public_dataset.py
