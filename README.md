@@ -25,9 +25,11 @@ Expressões faciais capturadas durante o uso de software conseguem
   modalidade isolada (`exploration/h4_multimodal_prediction.py`).
 
 > Código liberado como referência metodológica para a dissertação de mestrado
-> de **Bianca Lima Santos** (PPgSI/USP). Os dados experimentais **não são
-> distribuídos** (LGPD). Para reproduzir, colete dados próprios no formato
-> descrito em [_Estrutura de dados_](#estrutura-de-dados).
+> de **Bianca Lima Santos** (PPgSI/USP). Os vídeos **não são distribuídos**
+> (LGPD); a versão anonimizada do dataset (séries de emoções por frame,
+> questionários e features por janela) está em [`dataset/`](dataset/), sob
+> licença CC BY 4.0. Para coletar dados próprios, siga o formato descrito em
+> [_Estrutura de dados_](#estrutura-de-dados).
 
 ## Visão geral
 
@@ -118,6 +120,9 @@ Detalhes em [`docs/`](docs/).
 ├── modeling/                      # grid search, LOSO, segmentada, config
 ├── exploration/                   # estatística, visualizações, sanity
 ├── docs/                          # notas metodológicas
+├── dataset/                       # dataset público anonimizado (CC BY 4.0)
+├── anonymize_data.py              # gera cópias -anonimizado dos questionários
+├── export_public_dataset.py       # exporta dataset/ com verificação de PII
 ├── Makefile · pyproject.toml      # orquestração + deps (uv)
 ```
 
@@ -133,6 +138,11 @@ data/
 ├── interim/frames/<sessão>/                        # frames + JSONs por sessão
 └── processed/                                      # CSVs consolidados
 ```
+
+A pasta [`dataset/`](dataset/) segue o mesmo layout (sem vídeos, frames e
+JSONs) e pode ser usada no lugar de `data/` via `DATA_RAW_DIR` e
+`DATA_INTERIM_DIR`; ver [`dataset/README.md`](dataset/README.md). Para
+regerá-la a partir de `data/`: `make public-dataset`.
 
 ### Schemas
 

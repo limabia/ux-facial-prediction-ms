@@ -5,6 +5,7 @@ Scripts headless sobre os summaries. Saídas em `exploration/outputs/`.
 | Script | Propósito |
 |---|---|
 | `statistical_analysis.py` | Kruskal-Wallis + FDR + Cliff's Delta |
+| `ueq_friedman_games.py` | Friedman (UEQ-S entre jogos) + post-hoc Wilcoxon |
 | `clustering_analysis.py` | K-Means com Silhouette/Davies-Bouldin/Elbow |
 | `demographic_performance_analysis.py` | Viés demográfico + IC bootstrap |
 | `compare_faceapi_mediapipe.py` | Séries temporais Face-API vs MediaPipe |
@@ -20,4 +21,5 @@ Scripts headless sobre os summaries. Saídas em `exploration/outputs/`.
 make analysis              # quality reports + visualizações + grid search
 make hypothesis-tests      # H2, H3, H4
 make sanity-checks         # sanity checks de classificação
+make ueq-friedman          # UEQ-S entre jogos (só precisa de data/raw/ueq)
 ```
